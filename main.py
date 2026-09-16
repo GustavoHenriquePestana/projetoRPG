@@ -1,9 +1,10 @@
 from personagens import personagens, classes
 from inimigos import inimigos
 from itens import itens_loja
-from loja import loja_comprar, loja_vender, catalogo_loja
+from loja import loja_comprar, loja_vender
 from inventario import inventario
 from combate import iniciar_combate
+from equipamentos import equipando_itens, retirar_equipamento, consultar_equipamento
 
 
 mochila = []
@@ -102,66 +103,6 @@ def navegacao(menuPrincipal):
        print("Você precisa digitar um número!")
   return escolha_texto
 
-#função para equipar os itens de combate
-def equipando_itens(mochila, personagens, classe, itens_loja):
-  inventario(mochila)
-  item_escolhido = input("Qual item você quer equipar? ").lower().strip()
-  if item_escolhido in mochila:
-    tipo = itens_loja[item_escolhido]["tipo"]
-    if personagens[classe]["equipamentos"][tipo] == "":
-      personagens[classe]["equipamentos"][tipo] = item_escolhido
-      personagens[classe]["defesa"] = (itens_loja[item_escolhido]["defesa"] + personagens[classe]["defesa"])
-      personagens[classe]["dano"] = (itens_loja[item_escolhido]["dano"] + personagens[classe]["dano"])
-      mochila.remove(item_escolhido)
-    else:
-      troca_item = personagens[classe]["equipamentos"][tipo]
-      personagens[classe]["equipamentos"][tipo] = item_escolhido
-      personagens[classe]["defesa"] = (personagens[classe]["defesa"] - itens_loja[troca_item]["defesa"])
-      personagens[classe]["dano"] = (personagens[classe]["dano"] - itens_loja[troca_item]["dano"])
-      mochila.append(troca_item)
-      
-      
-      personagens[classe]["defesa"] = (itens_loja[item_escolhido]["defesa"] + personagens[classe]["defesa"])
-      personagens[classe]["dano"] = (itens_loja[item_escolhido]["dano"] + personagens[classe]["dano"])
-      mochila.remove(item_escolhido)
-  else:
-     print(f"você não tem o item {item_escolhido}")
-
-# função para retirar os itens de combate     
-def retirar_equipamento(mochila, personagens, classe, itens_loja):
-  consultar_equipamento(personagens, classe)
-  slot_escolhido = input("Qual slot você quer retirar? ").lower().strip()
-  if slot_escolhido == "sair":
-      print("obrigado pela visita!")
-      return
-  if slot_escolhido in personagens[classe]["equipamentos"]:
-    item_equipado = personagens[classe]["equipamentos"][slot_escolhido]
-    if item_equipado =="":
-      print("você não tem nenhum item equipado nesse espaço!")
-
-    else:
-      personagens[classe]["equipamentos"][slot_escolhido] = ""
-      personagens[classe]["defesa"] = personagens[classe]["defesa"] - itens_loja[item_equipado]["defesa"]
-      personagens[classe]["dano"] = personagens[classe]["dano"] - itens_loja[item_equipado]["dano"]
-      mochila.append(item_equipado)
-  else:
-    print("esse slot não existe")
-  
-
-
-
-#consultando equipamentos já equipados
-
-def consultar_equipamento(personagens, classe):
-   for tipo, equipamento in personagens[classe]["equipamentos"].items():
-      if equipamento == "":
-        equipamento = "vázio"
-        print(f"{tipo}: {equipamento}")
-
-      else:
-        print(f"{tipo}: {equipamento}")
-          
-
 #Navegar pelo menu da zona de equipamento
 def acao_equipamento(zonaEquipamento):
   print("seja bem-vindo à zona de equipamento!")
@@ -191,7 +132,7 @@ def mostrar_status(personagens, classe, saldo):
     print(f"saldo: {saldo}")
     print(f"HP: {personagens[classe]['hp']}")
     print(f"Dano: {personagens[classe]['dano']}")
-    print(f"Defesa{personagens[classe]['defesa']}")
+    print(f"Defesa: {personagens[classe]['defesa']}")
 
 
 
@@ -254,7 +195,6 @@ while True:
 
       if navegacao_escolhida == "sair":
         break
-      print("obrigado pela visita")
     continue 
 
   if navigation == "sair":
