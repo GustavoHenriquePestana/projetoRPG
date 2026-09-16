@@ -69,3 +69,26 @@ def acao_equipamento(zonaEquipamento):
     else:
        print("Você precisa digitar um número!")
   return escolha_texto
+
+#função pra navegar entre os cenários
+def navegacao(menuPrincipal):
+  print("seja bem-vindo ao nosso mundo!")
+  print("-----------------")
+  print("[1] - loja de equipamentos\n[2] - zona de combate\n[3] = zona de equipamentos\n[0] - sair")
+
+  while True:
+    escolha_texto = input("Para onde você quer ir? ")
+    if escolha_texto == "sair":
+      break
+
+    if escolha_texto.isdigit():
+      escolha = int(escolha_texto)
+      if 0<= escolha < len(menuPrincipal):
+        navegacao_escolhida = menuPrincipal[escolha]
+        print(f"você escolheu {navegacao_escolhida}")
+        return navegacao_escolhida
+      else:
+        print("escolha inválida")
+    else:
+       print("Você precisa digitar um número!")
+  return escolha_texto
