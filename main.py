@@ -1,9 +1,9 @@
-import random
 from personagens import personagens, classes
 from inimigos import inimigos
 from itens import itens_loja
 from loja import loja_comprar, loja_vender, catalogo_loja
 from inventario import inventario
+from combate import iniciar_combate
 
 
 mochila = []
@@ -50,139 +50,6 @@ def escolherClasse (classes):
 
 
 #função para começar o combate
-def iniciar_combate(personagens, inimigos, classe, saldo):
-
-#----------------------------------------------------------------
-# Sistema de combate
-#----------------------------------------------------------------
-
-  print("Você está em uma zona de combate")
-
-  hp_jogador = personagens[classe]["hp"]
-  dano_jogador = personagens[classe]["dano"]
-  defesa_jogador = personagens[classe]["defesa"]
-
-  print("------------------")
-  print("status do jogador")
-  print(f"HP: {hp_jogador}")
-  print(f"Dano: {dano_jogador}")
-  print(f"Defesa: {defesa_jogador}")
-
-  monstros_sorteados = list(inimigos.keys())
-  monstro_adversario = random.choice(monstros_sorteados)
-
-  print(f"Você foi atacado por: {monstro_adversario}")
-
-  hp_inimigo = inimigos[monstro_adversario]["hp"]
-  dano_inimigo = inimigos[monstro_adversario]["dano"]
-  defesa_inimigo = inimigos[monstro_adversario]["defesa"]
-
-  print("------------------")
-  print("status do monstro")
-  print(f"HP: {hp_inimigo}")
-  print(f"Dano: {dano_inimigo}")
-  print(f"Defesa: {defesa_inimigo}")
-
-  defesa_partida_jogador = defesa_jogador
-  dano_partida_jogador = dano_jogador
-  hp_partida_jogador = hp_jogador
-
-  defesa_partida_inimigo = defesa_inimigo
-  dano_partida_inimigo = dano_inimigo
-  hp_partida_inimigo = hp_inimigo
-
-
-  while hp_partida_inimigo > 0 and hp_partida_jogador > 0:
-
-    defesa_turno_jogador = defesa_jogador
-
-    #sorteios 
-    sorteio_dano = 0
-    sorteio_defesa = 0
-    sorteio_turno_defesa = 0
-
-    acao = input("escolha uma ação:\n[0] - sair\n[1] - ataque\n[2] - defesa" )
-    if acao.isdigit():
-      acao = int(acao)
-
-      # ataque jogador
-      if acao == 1:
-        sorteio_dano = random.randint(1,20)
-        sorteio_defesa = random.randint(1,20)
-        
-        # dano causado na rodada
-        dano_turno_jogador = (((sorteio_dano/100) + 1) * dano_partida_jogador) - (defesa_partida_inimigo *((sorteio_defesa/100) + 1))
-        print(f"({sorteio_dano} - bônus de ataque)/ ({sorteio_defesa} - bônus de defesa)")
-        
-        if dano_turno_jogador < 0:
-          hp_partida_jogador = hp_partida_jogador + dano_turno_jogador
-          print(f"você recebeu: {dano_turno_jogador:.2f} de dano")
-          
-          if hp_partida_jogador > 0:
-            print(f"HP jogador: {hp_partida_jogador:.2f}")
-            print(f"HP inimigo: {hp_partida_inimigo:.2f}")
-          
-          else:
-            print("Você foi derrotado")
-            print(f"HP jogador: {hp_partida_jogador:.2f}")
-            print(f"HP inimigo: {hp_partida_inimigo:.2f}")
-            return saldo
-        else: 
-          hp_partida_inimigo = hp_partida_inimigo - dano_turno_jogador
-          print(f"você infringiu: {dano_turno_jogador:.2f} de dano")
-          if hp_partida_inimigo > 0:
-            print(f"HP jogador: {hp_partida_jogador:.2f}")
-            print(f"HP inimigo: {hp_partida_inimigo:.2f}")
-          else:
-            print("Você derrotou o seu adversário")
-            print(f"HP jogador: {hp_partida_jogador:.2f}")
-            print(f"HP inimigo: {hp_partida_inimigo:.2f}")
-            saldo = saldo + inimigos[monstro_adversario]["ouro"]
-            print(f"você ganhou: {inimigos[monstro_adversario]['ouro']}")
-            return saldo
-
-      elif acao == 2:
-        sorteio_turno_defesa = random.randint(1,20)
-        defesa_turno_jogador = (((sorteio_turno_defesa/10) +1) * defesa_partida_jogador)
-      
-      elif acao == 0:
-        return saldo
-
-      else:
-        print("digite um número válido!")
-        continue
-      
-    # ataque inimigo
-    sorteio_dano = random.randint(1,20)
-    sorteio_defesa = random.randint(1,20)
-
-    dano_turno_inimigo = (((sorteio_dano/100) + 1) * dano_partida_inimigo) - (defesa_turno_jogador *((sorteio_defesa/100) + 1))
-    print(f"({sorteio_dano} - dado de ataque)/ ({sorteio_defesa} - dado de defesa)")
-
-    if dano_turno_inimigo < 0:
-      hp_partida_inimigo = hp_partida_inimigo + dano_turno_inimigo
-      print(f"O seu adversário recebeu: {dano_turno_inimigo:.2f} de dano")
-      if hp_partida_inimigo > 0:
-        print(f"HP jogador: {hp_partida_jogador:.2f}")
-        print(f"HP inimigo: {hp_partida_inimigo:.2f}")
-      else:
-        print("O seu adversário foi derrotado")
-        print(f"HP jogador: {hp_partida_jogador:.2f}")
-        print(f"HP inimigo: {hp_partida_inimigo:.2f}")
-        saldo = saldo + inimigos[monstro_adversario]["ouro"]
-        print(f"você ganhou: {inimigos[monstro_adversario]['ouro']}")
-        return saldo
-    else: 
-      hp_partida_jogador = hp_partida_jogador - dano_turno_inimigo
-      print(f"Seu inimigo infringiu: {dano_turno_inimigo:.2f} de dano")
-      if hp_partida_jogador > 0:
-        print(f"HP jogador: {hp_partida_jogador:.2f}")
-        print(f"HP inimigo: {hp_partida_inimigo:.2f}")
-      else:
-        print("Você foi derrotado!")
-        print(f"HP jogador: {hp_partida_jogador:.2f}")
-        print(f"HP inimigo: {hp_partida_inimigo:.2f}")
-        return saldo
 
 
 
@@ -320,11 +187,11 @@ def acao_equipamento(zonaEquipamento):
 
 #consultar status
 def mostrar_status(personagens, classe, saldo):
-    print(classe)
-    print(saldo)
-    print(personagens[classe]["hp"])
-    print(personagens[classe]["dano"])
-    print(personagens[classe]["defesa"])
+    print(f"classe: {classe}")
+    print(f"saldo: {saldo}")
+    print(f"HP: {personagens[classe]['hp']}")
+    print(f"Dano: {personagens[classe]['dano']}")
+    print(f"Defesa{personagens[classe]['defesa']}")
 
 
 
