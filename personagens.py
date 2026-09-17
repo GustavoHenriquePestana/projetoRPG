@@ -7,6 +7,9 @@ personagens = {
         "hp": 150,
         "dano": 10,
         "defesa": 8,
+        "nivel": 1,
+        "xp": 0,
+        "xp_necessario": 100,
         "equipamentos" : {
            "arma": "",
            "cabeca": "",
@@ -21,6 +24,9 @@ personagens = {
         "hp": 175,
         "dano": 20,
         "defesa": 15,
+        "nivel": 1,
+        "xp": 0,
+        "xp_necessario": 100,
         "equipamentos":{
            "arma": "",
            "cabeca": "",
@@ -35,6 +41,9 @@ personagens = {
         "hp": 175,
         "dano": 20,
         "defesa": 15,
+        "nivel": 1,
+        "xp": 0,
+        "xp_necessario": 100,
         "equipamentos":{
            "arma": "",
            "cabeca": "",
