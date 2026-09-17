@@ -88,7 +88,18 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
             print(f"HP jogador: {hp_partida_jogador:.2f}")
             print(f"HP inimigo: {hp_partida_inimigo:.2f}")
             saldo = saldo + inimigos[monstro_adversario]["ouro"]
+            personagens[classe]["xp"] = personagens[classe]["xp"] + inimigos[monstro_adversario]["xp"]
             print(f"você ganhou: {inimigos[monstro_adversario]['ouro']}")
+            print(f"você ganhou: {inimigos[monstro_adversario]['xp']} de xp")
+
+            while personagens[classe]["xp"] >= personagens[classe]["xp_necessario"]:
+              personagens[classe]["nivel"] = (personagens[classe]["nivel"] + 1)
+              personagens[classe]["dano"] = (personagens[classe]["dano"] + 5)
+              personagens[classe]["defesa"] = (personagens[classe]["defesa"] + 5)
+              personagens[classe]["hp"] = (personagens[classe]["hp"] + 20)
+              personagens[classe]["xp"] = (personagens[classe]["xp"] - personagens[classe]["xp_necessario"])
+              personagens[classe]["xp_necessario"] = (personagens[classe]["xp_necessario"] + 50)
+              print(f"Parabéns! Você subiu de nível! Agora você é nível {personagens[classe]['nivel']}")
             return saldo
 
       elif acao == 2:
@@ -105,6 +116,11 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
     # ataque inimigo
     sorteio_dano = random.randint(1,20)
     sorteio_defesa = random.randint(1,20)
+
+    for i in range(personagens[classe]["nivel"]):
+      if personagens[classe]["nivel"] > 1:
+        inimigos[monstro_adversario]["dano"] = inimigos[monstro_adversario]["dano"] + ((personagens[classe]["nivel"] * 1) + 5)
+        inimigos[monstro_adversario]["defesa"] = inimigos[monstro_adversario]["defesa"] + ((personagens[classe]["nivel"] * 1) + 5)
 
     dano_turno_inimigo = (((sorteio_dano/100) + 1) * dano_partida_inimigo) - (defesa_turno_jogador *((sorteio_defesa/100) + 1))
     print(f"({sorteio_dano} - dado de ataque)/ ({sorteio_defesa} - dado de defesa)")

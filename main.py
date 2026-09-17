@@ -10,27 +10,11 @@ from status import mostrar_status
 
 mochila = []
 
-
-
 operacoes = ["sair", "comprar", "vender", "consultar"]
 
 menuPrincipal = ["sair","loja de equipamentos", "zona de combate", "zona de equipamento"]
 
 zonaEquipamento = ["sair", "consultar", "equipar", "retirar"]
-
-
-
-
-
-
-#consultar status
-def mostrar_status(personagens, classe, saldo):
-    print(f"classe: {classe}")
-    print(f"saldo: {saldo}")
-    print(f"HP: {personagens[classe]['hp']}")
-    print(f"Dano: {personagens[classe]['dano']}")
-    print(f"Defesa: {personagens[classe]['defesa']}")
-
 
 
 #invocação de função para escolher classe
