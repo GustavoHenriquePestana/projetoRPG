@@ -94,19 +94,7 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
             print("Você derrotou o seu adversário")
             print(f"HP jogador: {hp_partida_jogador:.2f}")
             print(f"HP inimigo: {hp_partida_inimigo:.2f}")
-            saldo = saldo + inimigos[monstro_adversario]["ouro"]
-            personagens[classe]["xp"] = personagens[classe]["xp"] + inimigos[monstro_adversario]["xp"]
-            print(f"você ganhou: {inimigos[monstro_adversario]['ouro']}")
-            print(f"você ganhou: {inimigos[monstro_adversario]['xp']} de xp")
-
-            while personagens[classe]["xp"] >= personagens[classe]["xp_necessario"]:
-              personagens[classe]["nivel"] = (personagens[classe]["nivel"] + 1)
-              personagens[classe]["dano"] = (personagens[classe]["dano"] + 5)
-              personagens[classe]["defesa"] = (personagens[classe]["defesa"] + 5)
-              personagens[classe]["hp"] = (personagens[classe]["hp"] + 20)
-              personagens[classe]["xp"] = (personagens[classe]["xp"] - personagens[classe]["xp_necessario"])
-              personagens[classe]["xp_necessario"] = (personagens[classe]["xp_necessario"] + 50)
-              print(f"Parabéns! Você subiu de nível! Agora você é nível {personagens[classe]['nivel']}")
+            saldo = recompensa(personagens, classe, inimigos, monstro_adversario, saldo)
             return saldo
 
       elif acao == 2:
@@ -119,6 +107,9 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
       else:
         print("digite um número válido!")
         continue
+    else:
+      print("você precisa digitar um número")
+      continue
       
     # ataque inimigo
     sorteio_dano = random.randint(1,20)
@@ -137,8 +128,7 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
         print("O seu adversário foi derrotado")
         print(f"HP jogador: {hp_partida_jogador:.2f}")
         print(f"HP inimigo: {hp_partida_inimigo:.2f}")
-        saldo = saldo + inimigos[monstro_adversario]["ouro"]
-        print(f"você ganhou: {inimigos[monstro_adversario]['ouro']}")
+        saldo = recompensa(personagens, classe, inimigos, monstro_adversario, saldo)
         return saldo
     else: 
       hp_partida_jogador = hp_partida_jogador - dano_turno_inimigo
@@ -151,6 +141,3 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
         print(f"HP jogador: {hp_partida_jogador:.2f}")
         print(f"HP inimigo: {hp_partida_inimigo:.2f}")
         return saldo
-
-
-def recompensa(personagens, classe, inimigos, monstro_adversario, saldo):
