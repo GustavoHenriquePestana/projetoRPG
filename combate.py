@@ -1,4 +1,5 @@
 import random
+from progressao import recompensa
 
 def iniciar_combate(personagens, inimigos, classe, saldo):
 
@@ -26,6 +27,12 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
   hp_inimigo = inimigos[monstro_adversario]["hp"]
   dano_inimigo = inimigos[monstro_adversario]["dano"]
   defesa_inimigo = inimigos[monstro_adversario]["defesa"]
+
+  if personagens[classe]["nivel"] > 1:
+    percentual_evo = (personagens[classe]['nivel'] - 1) * 0.10
+    hp_inimigo = hp_inimigo * (1 + percentual_evo)
+    dano_inimigo = dano_inimigo * (1 + percentual_evo)
+    defesa_inimigo = defesa_inimigo * (1 + percentual_evo)  
 
   print("------------------")
   print("status do monstro")
@@ -117,11 +124,6 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
     sorteio_dano = random.randint(1,20)
     sorteio_defesa = random.randint(1,20)
 
-    for i in range(personagens[classe]["nivel"]):
-      if personagens[classe]["nivel"] > 1:
-        inimigos[monstro_adversario]["dano"] = inimigos[monstro_adversario]["dano"] + ((personagens[classe]["nivel"] * 1) + 5)
-        inimigos[monstro_adversario]["defesa"] = inimigos[monstro_adversario]["defesa"] + ((personagens[classe]["nivel"] * 1) + 5)
-
     dano_turno_inimigo = (((sorteio_dano/100) + 1) * dano_partida_inimigo) - (defesa_turno_jogador *((sorteio_defesa/100) + 1))
     print(f"({sorteio_dano} - dado de ataque)/ ({sorteio_defesa} - dado de defesa)")
 
@@ -149,3 +151,6 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
         print(f"HP jogador: {hp_partida_jogador:.2f}")
         print(f"HP inimigo: {hp_partida_inimigo:.2f}")
         return saldo
+
+
+def recompensa(personagens, classe, inimigos, monstro_adversario, saldo):
