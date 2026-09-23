@@ -81,6 +81,7 @@ try:
 
     if navigation == "sair":
       salvar_jogo(classe, saldo, mochila, personagens)
+      print("\njogo salvo com sucesso.")
       break
 except KeyboardInterrupt:
   salvar_jogo(classe, saldo, mochila, personagens)
