@@ -2,7 +2,7 @@ classes = ["mago","barbaro", "bardo"]
 
 personagens = {
     "mago": {
-        "saldo": 250,
+        "saldo_inicial": 250,
         "capacidade": 14,
         "hp": 150,
         "dano": 10,
@@ -19,7 +19,7 @@ personagens = {
         }
     },
     "barbaro": {
-        "saldo": 150,
+        "saldo_inicial": 150,
         "capacidade": 18,
         "hp": 175,
         "dano": 20,
@@ -36,7 +36,7 @@ personagens = {
         }
     },
     "bardo": {
-        "saldo": 180,
+        "saldo_inicial": 180,
         "capacidade": 8,
         "hp": 175,
         "dano": 20,
