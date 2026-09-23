@@ -92,3 +92,28 @@ def navegacao(menuPrincipal):
     else:
        print("Você precisa digitar um número!")
   return escolha_texto
+
+def menu_inicial(escolha_inicial):
+   print("[0] - Sair")
+   print("[1] - Novo Jogo")
+   print("[2] - Carregar jogo")
+
+   while True:
+    escolha_texto = input("O que você quer fazer? ")
+    if escolha_texto == "sair":
+         break
+   
+    if escolha_texto.isdigit():
+      escolha = int(escolha_texto)
+      if 0<= escolha < len(escolha_inicial):
+        navegacao_escolhida = escolha_inicial[escolha]
+        print(f"você escolheu {navegacao_escolhida}")
+        return navegacao_escolhida
+      else:
+        print("escolha inválida")
+    else:
+      print("Você precisa digitar um número!")
+
+   return escolha_texto
+
+

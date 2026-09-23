@@ -15,9 +15,9 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
 
   print("------------------")
   print("status do jogador")
-  print(f"HP: {hp_jogador}")
-  print(f"Dano: {dano_jogador}")
-  print(f"Defesa: {defesa_jogador}")
+  print(f"HP: {hp_jogador:.2f}")
+  print(f"Dano: {dano_jogador:.2f}")
+  print(f"Defesa: {defesa_jogador:.2f}")
 
   monstros_sorteados = list(inimigos.keys())
   monstro_adversario = random.choice(monstros_sorteados)
@@ -36,9 +36,9 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
 
   print("------------------")
   print("status do monstro")
-  print(f"HP: {hp_inimigo}")
-  print(f"Dano: {dano_inimigo}")
-  print(f"Defesa: {defesa_inimigo}")
+  print(f"HP: {hp_inimigo:.2f}")
+  print(f"Dano: {dano_inimigo:.2f}")
+  print(f"Defesa: {defesa_inimigo:.2f}")
 
   defesa_partida_jogador = defesa_jogador
   dano_partida_jogador = dano_jogador
@@ -69,7 +69,7 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
         
         # dano causado na rodada
         dano_turno_jogador = (((sorteio_dano/100) + 1) * dano_partida_jogador) - (defesa_partida_inimigo *((sorteio_defesa/100) + 1))
-        print(f"({sorteio_dano} - bônus de ataque)/ ({sorteio_defesa} - bônus de defesa)")
+        print(f"({sorteio_dano:.2f} - bônus de ataque)/ ({sorteio_defesa:.2f} - bônus de defesa)")
         
         if dano_turno_jogador < 0:
           hp_partida_jogador = hp_partida_jogador + dano_turno_jogador

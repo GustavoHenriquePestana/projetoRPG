@@ -5,33 +5,50 @@ from loja import loja_comprar, loja_vender
 from inventario import inventario
 from combate import iniciar_combate
 from equipamentos import equipando_itens, retirar_equipamento, consultar_equipamento
-from menus import escolherClasse, escolherOperacao, navegacao, acao_equipamento
+from menus import escolherClasse, escolherOperacao, navegacao, acao_equipamento, menu_inicial
 from status import mostrar_status
-from save import salvar_jogo
+from save import salvar_jogo, carregar_jogo
+from pathlib import Path
 
-mochila = []
+
+
+escolha_inicial = ["sair", "novo", "carregar"]
+
 
 operacoes = ["sair", "comprar", "vender", "consultar"]
-
 menuPrincipal = ["sair","loja de equipamentos", "zona de combate", "zona de equipamento"]
-
 zonaEquipamento = ["sair", "consultar", "equipar", "retirar"]
 
+inicio = menu_inicial(escolha_inicial)
 
-#invocação de função para escolher classe
-print("Vamos começar a explorar o mundo! Por onde você quer começar: ")
-print("Escolha a classe do seu persongame")
+if inicio == "novo":
+  mochila = []
+  print("Vamos começar a explorar o mundo!")
+  print("Escolha a classe do seu personagem")
 
-classe = escolherClasse(classes)
+  classe = escolherClasse(classes)
 
-print("Para onde você quer ir agora?")
+  saldo = personagens[classe]["saldo_inicial"]
+  capacidade_maxima = personagens[classe]["capacidade"]
 
+elif inicio == "carregar":
+  jogo_salvo = Path("save.json")
 
-#funções para começar o jogo
-saldo = personagens[classe]["saldo_inicial"]
-capacidade_maxima = personagens[classe]["capacidade"]
+  if jogo_salvo.is_file():
+    classe, saldo, mochila, personagem_salvo = carregar_jogo()
 
-#invocando função para comprar item
+    personagens[classe] = personagem_salvo
+    capacidade_maxima = personagens[classe]["capacidade"]
+
+    print("jogo carregado com sucesso")
+
+  else:
+    print("nenhum jogo salvo encontrado")
+    exit()
+
+elif inicio == "sair":
+  exit()
+
 try:
   while True:
     mostrar_status(personagens, classe, saldo)
@@ -47,7 +64,7 @@ try:
           saldo = loja_vender(saldo, mochila, itens_loja)
           continue
         if transacao == "consultar":
-          consulta = inventario(mochila)
+          inventario(mochila)
           continue
 
         if transacao == "sair":
