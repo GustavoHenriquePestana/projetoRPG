@@ -21,5 +21,15 @@ inimigos = {
         "hp": 250,
         "ouro": 80,
         "xp": 150
+    },
+}
+
+chefe_final = {
+    "rei das sombras": {
+        "hp": 1500,
+        "dano": 120,
+        "defesa": 100,
+        "xp": 1000,
+        "ouro": 1000
     }
 }
