@@ -49,9 +49,16 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
   hp_partida_inimigo = hp_inimigo
 
   cooldown_habilidades = 0
-
+  turnos_efeito = 0
 
   while hp_partida_inimigo > 0 and hp_partida_jogador > 0:
+
+    dano_turno_base = dano_partida_jogador
+    defesa_inimigo_turno = defesa_partida_inimigo
+
+    if turnos_efeito > 0 and classe == "barbaro":
+      dano_turno_base = dano_partida_jogador * 1.50
+      defesa_inimigo_turno = defesa_partida_inimigo * 0.80
 
     defesa_turno_jogador = defesa_jogador
     print(f"Cooldown: {cooldown_habilidades}")
@@ -70,7 +77,7 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
         sorteio_defesa = random.randint(1,20)
         
         # dano causado na rodada
-        dano_turno_jogador = (((sorteio_dano/100) + 1) * dano_partida_jogador) - (defesa_partida_inimigo *((sorteio_defesa/100) + 1))
+        dano_turno_jogador = (((sorteio_dano/100) + 1) * dano_turno_base) - (defesa_inimigo_turno *((sorteio_defesa/100) + 1))
         print(f"({sorteio_dano:.2f} - bônus de ataque)/ ({sorteio_defesa:.2f} - bônus de defesa)")
         
         if dano_turno_jogador < 0:
@@ -105,10 +112,12 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
 
       elif acao == 3:
         if cooldown_habilidades == 0:
-          print("função em desenvolvimento")
 
-          #fim da função
-          cooldown_habilidades = 3
+          if classe == "barbaro":
+            print("Você ativou a fúria dos guerreiros!")
+
+            turnos_efeito = 3
+            cooldown_habilidades = 5
 
         else:
           print ("Você ainda não pode usar essa habilidade!")
@@ -157,4 +166,6 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
         return saldo
    
     if cooldown_habilidades >0:
-      cooldown_habilidades = cooldown_habilidades - 1
+      cooldown_habilidades -= 1
+    if turnos_efeito >0:
+      turnos_efeito -= 1
