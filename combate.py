@@ -62,6 +62,9 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
 
     defesa_turno_jogador = defesa_jogador
     print(f"Cooldown: {cooldown_habilidades}")
+    print(f"Turnos de efeito: {turnos_efeito}")
+    print(f"Dano do turno: {dano_turno_base}")
+    print(f"Defesa inimiga no turno: {defesa_inimigo_turno}")
     #sorteios 
     sorteio_dano = 0
     sorteio_defesa = 0
