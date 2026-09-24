@@ -64,7 +64,7 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
 
     if turnos_efeito > 0 and classe == "mago":
       dano_turno_base = dano_partida_jogador * 1.70
-      defesa_jogador_turno = defesa_partida_jogador * 0.70
+      defesa_jogador_turno = defesa_partida_jogador * 0.80
 
     defesa_turno_jogador = defesa_jogador_turno
 

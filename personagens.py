@@ -5,7 +5,7 @@ personagens = {
         "saldo_inicial": 250,
         "capacidade": 14,
         "hp": 150,
-        "dano": 10,
+        "dano": 18,
         "defesa": 8,
         "nivel": 1,
         "xp": 0,
