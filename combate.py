@@ -48,17 +48,19 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
   dano_partida_inimigo = dano_inimigo
   hp_partida_inimigo = hp_inimigo
 
+  cooldown_habilidades = 0
+
 
   while hp_partida_inimigo > 0 and hp_partida_jogador > 0:
 
     defesa_turno_jogador = defesa_jogador
-
+    print(f"Cooldown: {cooldown_habilidades}")
     #sorteios 
     sorteio_dano = 0
     sorteio_defesa = 0
     sorteio_turno_defesa = 0
 
-    acao = input("escolha uma ação:\n[0] - sair\n[1] - ataque\n[2] - defesa" )
+    acao = input("escolha uma ação:\n[0] - sair\n[1] - ataque\n[2] - defesa\n[3] - habilidade especial")
     if acao.isdigit():
       acao = int(acao)
 
@@ -100,6 +102,18 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
       elif acao == 2:
         sorteio_turno_defesa = random.randint(1,20)
         defesa_turno_jogador = (((sorteio_turno_defesa/10) +1) * defesa_partida_jogador)
+
+      elif acao == 3:
+        if cooldown_habilidades == 0:
+          print("função em desenvolvimento")
+
+          #fim da função
+          cooldown_habilidades = 3
+
+        else:
+          print ("Você ainda não pode usar essa habilidade!")
+          continue
+
       
       elif acao == 0:
         return saldo
@@ -141,3 +155,6 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
         print(f"HP jogador: {hp_partida_jogador:.2f}")
         print(f"HP inimigo: {hp_partida_inimigo:.2f}")
         return saldo
+   
+    if cooldown_habilidades >0:
+      cooldown_habilidades = cooldown_habilidades - 1
