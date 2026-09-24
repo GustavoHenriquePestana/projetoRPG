@@ -54,17 +54,23 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
   while hp_partida_inimigo > 0 and hp_partida_jogador > 0:
 
     dano_turno_base = dano_partida_jogador
+    defesa_jogador_base = defesa_partida_jogador
+
     defesa_inimigo_turno = defesa_partida_inimigo
 
     if turnos_efeito > 0 and classe == "barbaro":
       dano_turno_base = dano_partida_jogador * 1.50
       defesa_inimigo_turno = defesa_partida_inimigo * 0.80
 
-    defesa_turno_jogador = defesa_jogador
+    if turnos_efeito > 0 and classe == "mago":
+      dano_turno_base = dano_partida_jogador * 1.70
+      defesa_jogador_turno = defesa_partida_jogador * 0.70
+
+    defesa_turno_jogador = defesa_jogador_turno
     print(f"Cooldown: {cooldown_habilidades}")
     print(f"Turnos de efeito: {turnos_efeito}")
     print(f"Dano do turno: {dano_turno_base}")
-    print(f"Defesa inimiga no turno: {defesa_inimigo_turno}")
+    print(f"Defesa do tuno {defesa_jogador_turno}")
     #sorteios 
     sorteio_dano = 0
     sorteio_defesa = 0
@@ -119,6 +125,11 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
           if classe == "barbaro":
             print("Você ativou a fúria dos guerreiros!")
 
+            turnos_efeito = 3
+            cooldown_habilidades = 5
+
+          elif classe == "mago":
+            print("Você ativou a Sobrecarga Arcana!")
             turnos_efeito = 3
             cooldown_habilidades = 5
 
