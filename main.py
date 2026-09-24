@@ -1,5 +1,5 @@
 from personagens import personagens, classes
-from inimigos import inimigos
+from inimigos import inimigos, chefe_final
 from itens import itens_loja
 from loja import loja_comprar, loja_vender
 from inventario import inventario
@@ -9,7 +9,6 @@ from menus import escolherClasse, escolherOperacao, navegacao, acao_equipamento,
 from status import mostrar_status
 from save import salvar_jogo, carregar_jogo
 from pathlib import Path
-
 
 
 escolha_inicial = ["sair", "novo", "carregar"]
@@ -105,7 +104,7 @@ try:
       continue 
 
     if navigation == "chefe final":
-      print("O chefe final foi desbloqueado!")
+      print(chefe_final)
 
     if navigation == "sair":
       salvar_jogo(classe, saldo, mochila, personagens)
