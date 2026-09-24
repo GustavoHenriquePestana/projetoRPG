@@ -24,75 +24,75 @@ inimigos = {
     },
 
     "lobo das sombras": {
-        "dano": 45,
-        "defesa": 20,
-        "hp": 220,
-        "ouro": 30,
-        "xp": 60
+        "dano": 60,
+        "defesa": 25,
+        "hp": 300,
+        "ouro": 45,
+        "xp": 85
     },
 
     "cavaleiro esquecido": {
-        "dano": 40,
-        "defesa": 60,
-        "hp": 450,
-        "ouro": 45,
-        "xp": 80
+        "dano": 45,
+        "defesa": 65,
+        "hp": 500,
+        "ouro": 40,
+        "xp": 75
     },
 
     "aranha de cristal": {
-        "dano": 65,
-        "defesa": 25,
+        "dano": 70,
+        "defesa": 20,
         "hp": 280,
-        "ouro": 50,
-        "xp": 90
-    },
-
-    "guardião de pedra": {
-        "dano": 35,
-        "defesa": 90,
-        "hp": 650,
         "ouro": 60,
         "xp": 110
     },
 
+    "guardião de pedra": {
+        "dano": 30,
+        "defesa": 80,
+        "hp": 600,
+        "ouro": 35,
+        "xp": 70
+    },
+
     "espectro faminto": {
-        "dano": 95,
+        "dano": 90,
         "defesa": 10,
-        "hp": 200,
-        "ouro": 75,
-        "xp": 130
+        "hp": 220,
+        "ouro": 85,
+        "xp": 140
     },
 
     "minotauro do abismo": {
-        "dano": 90,
-        "defesa": 55,
-        "hp": 600,
-        "ouro": 100,
-        "xp": 180
+        "dano": 65,
+        "defesa": 50,
+        "hp": 450,
+        "ouro": 70,
+        "xp": 120
     },
 
-    "dragão jovem": {
-        "dano": 110,
-        "defesa": 65,
-        "hp": 750,
-        "ouro": 150,
-        "xp": 220
-    },
-
-    "sentinela das ruínas": {
-        "dano": 70,
-        "defesa": 80,
-        "hp": 700,
-        "ouro": 120,
-        "xp": 200
+    "sentinela das ruinas": {
+        "dano": 50,
+        "defesa": 70,
+        "hp": 520,
+        "ouro": 60,
+        "xp": 100
     },
 
     "demônio escarlate": {
-        "dano": 125,
+        "dano": 85,
+        "defesa": 25,
+        "hp": 320,
+        "ouro": 95,
+        "xp": 160
+    },
+
+    "dragao jovem": {
+        "dano": 75,
         "defesa": 45,
-        "hp": 500,
-        "ouro": 180,
-        "xp": 250
+        "hp": 420,
+        "ouro": 100,
+        "xp": 170
     }
 }
 
