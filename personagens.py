@@ -41,7 +41,7 @@ personagens = {
         "hp": 175,
         "dano": 20,
         "defesa": 15,
-        "nivel": 1,
+        "nivel": 10,
         "xp": 0,
         "xp_necessario": 100,
         "equipamentos":{

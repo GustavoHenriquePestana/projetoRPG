@@ -45,13 +45,22 @@ elif inicio == "carregar":
   else:
     print("nenhum jogo salvo encontrado")
     exit()
-
 elif inicio == "sair":
   exit()
-
+#invocando função para comprar item
 try:
   while True:
     mostrar_status(personagens, classe, saldo)
+    menuPrincipal = [
+      "sair",
+      "loja de equipamentos",
+      "zona de combate",
+      "zona de equipamento"
+    ]
+
+    if personagens[classe]["nivel"] >= 10:
+      menuPrincipal.append("chefe final")
+
     navigation = navegacao(menuPrincipal)
     if navigation == "loja de equipamentos":    
       while True:
@@ -90,11 +99,13 @@ try:
 
         if navegacao_escolhida == "consultar":
           consultar_equipamento(personagens, classe)
-          
 
         if navegacao_escolhida == "sair":
           break
       continue 
+
+    if navigation == "chefe final":
+      print("O chefe final foi desbloqueado!")
 
     if navigation == "sair":
       salvar_jogo(classe, saldo, mochila, personagens)
