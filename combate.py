@@ -54,7 +54,7 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
   while hp_partida_inimigo > 0 and hp_partida_jogador > 0:
 
     dano_turno_base = dano_partida_jogador
-    defesa_jogador_base = defesa_partida_jogador
+    defesa_jogador_turno = defesa_partida_jogador
 
     defesa_inimigo_turno = defesa_partida_inimigo
 
@@ -67,6 +67,7 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
       defesa_jogador_turno = defesa_partida_jogador * 0.70
 
     defesa_turno_jogador = defesa_jogador_turno
+
     print(f"Cooldown: {cooldown_habilidades}")
     print(f"Turnos de efeito: {turnos_efeito}")
     print(f"Dano do turno: {dano_turno_base}")
@@ -117,7 +118,7 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
 
       elif acao == 2:
         sorteio_turno_defesa = random.randint(1,20)
-        defesa_turno_jogador = (((sorteio_turno_defesa/10) +1) * defesa_partida_jogador)
+        defesa_turno_jogador = (((sorteio_turno_defesa/10) +1) * defesa_jogador_turno)
 
       elif acao == 3:
         if cooldown_habilidades == 0:
