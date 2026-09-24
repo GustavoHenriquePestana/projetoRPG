@@ -62,9 +62,18 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
       dano_turno_base = dano_partida_jogador * 1.50
       defesa_inimigo_turno = defesa_partida_inimigo * 0.80
 
-    if turnos_efeito > 0 and classe == "mago":
+    elif turnos_efeito > 0 and classe == "mago":
       dano_turno_base = dano_partida_jogador * 1.70
       defesa_jogador_turno = defesa_partida_jogador * 0.80
+
+    elif turnos_efeito > 0 and classe == "bardo":
+      defesa_jogador_turno = defesa_partida_jogador * 1.30
+
+      cura_turno = hp_jogador * 0.10
+      hp_partida_jogador += cura_turno
+
+      if hp_partida_jogador > hp_jogador:
+        hp_partida_jogador = hp_jogador
 
     defesa_turno_jogador = defesa_jogador_turno
 
@@ -131,6 +140,11 @@ def iniciar_combate(personagens, inimigos, classe, saldo):
 
           elif classe == "mago":
             print("Você ativou a Sobrecarga Arcana!")
+            turnos_efeito = 3
+            cooldown_habilidades = 5
+
+          elif classe == "bardo":
+            print("Você começou a tocar a Canção Revigorante!")
             turnos_efeito = 3
             cooldown_habilidades = 5
 
