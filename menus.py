@@ -74,7 +74,8 @@ def acao_equipamento(zonaEquipamento):
 def navegacao(menuPrincipal):
   print("seja bem-vindo ao nosso mundo!")
   print("-----------------")
-  print("[1] - loja de equipamentos\n[2] - zona de combate\n[3] = zona de equipamentos\n[0] - sair")
+  for indice, opcao in enumerate(menuPrincipal):
+     print(f"[{indice}] - {opcao}")
 
   while True:
     escolha_texto = input("Para onde você quer ir? ")
