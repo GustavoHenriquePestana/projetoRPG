@@ -3,7 +3,7 @@ from inimigos import inimigos, chefe_final
 from itens import itens_loja
 from loja import loja_comprar, loja_vender
 from inventario import inventario
-from combate import iniciar_combate
+from combate import iniciar_combate, iniciar_chefe
 from equipamentos import equipando_itens, retirar_equipamento, consultar_equipamento
 from menus import escolherClasse, escolherOperacao, navegacao, acao_equipamento, menu_inicial
 from status import mostrar_status
@@ -104,7 +104,39 @@ try:
       continue 
 
     if navigation == "chefe final":
-      print(chefe_final)
+      saldo, venceu_chefe = iniciar_chefe(
+    personagens,
+    chefe_final,
+    classe,
+    saldo
+    )
+      if venceu_chefe:
+        print("------------------------------")
+        print("VOCÊ DERROTOU O REI DAS SOMBRAS!")
+        print("------------------------------")
+
+        if classe == "barbaro":
+            print("Com a força de incontáveis batalhas, você ergue sua arma uma última vez.")
+            print("O Rei das Sombras cai diante de você, e o silêncio toma o campo de batalha.")
+            print("Seu nome será lembrado como o guerreiro que enfrentou as trevas sem recuar.")
+
+        elif classe == "mago":
+            print("A energia da última magia desaparece lentamente de suas mãos.")
+            print("O Rei das Sombras finalmente se desfaz, e a escuridão que cobria o reino começa a desaparecer.")
+            print("Seu domínio das artes arcanas mudou para sempre o destino deste mundo.")
+
+        elif classe == "bardo":
+            print("A última nota de sua canção ecoa pelo campo de batalha.")
+            print("Com a queda do Rei das Sombras, uma nova melodia começa a ser ouvida por todo o reino.")
+            print("Sua história será cantada por gerações.")
+
+        print()
+        print("O reino finalmente está livre.")
+        print("Parabéns, você concluiu o jogo!")
+        print("------------------------------")
+
+        salvar_jogo(classe, saldo, mochila, personagens)
+        break
 
     if navigation == "sair":
       salvar_jogo(classe, saldo, mochila, personagens)
